@@ -83,7 +83,7 @@ echo ">>> Starting RisingOS Build"
 echo -e ">>> Building RisingOS for Xiaomi Miatoll"
 export TZ=Africa/Cairo
 echo -e ">>> Timezone set to Africa/Cairo"
-riseup miatoll user
+riseup miatoll userdebug
 echo -e ">>> Build command executed: riseup miatoll user"
 echo -e ">>> Build process initiated. This may take several hours."
 echo -e ">>> You can monitor the build progress above."
