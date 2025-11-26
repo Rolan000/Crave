@@ -58,7 +58,14 @@ echo -e ">>> Please wait, this may take a while..."
 # ================================
 echo -e ">>> Syncing repo"
 
-/opt/crave/resync.sh
+if [ -f /opt/crave/resync.sh ]; then
+    echo "[INFO] Running /opt/crave/resync.sh ..."
+    bash /opt/crave/resync.sh
+else
+    echo "[INFO] /opt/crave/resync.sh not found. Running repo sync instead..."
+    repo sync -c --no-clone-bundle --optimized-fetch --prune --force-sync -j$(nproc --all)
+fi
+
 
 echo -e ">>> Repo sync completed"
 echo -e ">>> Proceeding to build setup..."
