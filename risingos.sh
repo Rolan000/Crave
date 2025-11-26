@@ -16,7 +16,7 @@ rm -rf hardware/sony/timekeep
 # Initialize RisingOS repo
 # ================================
 echo -e ">>> Initializing RisingOS repository"
-repo init -u https://github.com/RosMiatoll/android -b sixteen --git-lfs
+repo init -u https://github.com/RisingOS-Revived/android -b sixteen --git-lfs
 echo -e ">>> Downloading RisingOS local manifests"
 echo -e ">>> Please wait, this may take a while..."
 echo -e ">>> Cloning RisingOS local manifests"
