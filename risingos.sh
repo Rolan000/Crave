@@ -36,7 +36,7 @@ echo -e ">>> Cloning Vendor Tree: xiaomi/vendor"
 git clone https://github.com/RosMiatoll/vendor_xiaomi_miatoll_rebase.git -b prebuild vendor/xiaomi/miatoll
 echo -e ">>> Done"
 echo -e ">>> Cloning Kernel Tree: xiaomi/sm6250"
-git clone https://github.com/RosMiatoll/device_xiaomi_miatoll-kernel.git -b 16 device/xiaomi/miatoll-kernel
+git clone https://github.com/RosMiatoll/device_xiaomi_miatoll-kernel.git -b sixteen device/xiaomi/miatoll-kernel
 echo -e ">>> Done"
 echo -e ">>> Cloning Hardware Tree: xiaomi/hardware_xiaomi"
 git clone https://github.com/LineageOS/android_hardware_xiaomi.git -b lineage-23.0 hardware/xiaomi
