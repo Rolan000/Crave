@@ -17,7 +17,7 @@ rm -rf hardware/sony/timekeep
 # Initialize RisingOS repo
 # ================================
 echo -e ">>> Initializing RisingOS repository"
-repo init -u https://github.com/RisingOS-Revived/android -b sixteen --git-lfs
+repo init -u https://github.com/Evolution-X/manifest -b bq1 --git-lfs
 echo -e ">>> Downloading RisingOS local manifests"
 echo -e ">>> Please wait, this may take a while..."
 echo -e ">>> Cloning RisingOS local manifests"
@@ -82,11 +82,11 @@ echo ">>> Starting RisingOS Build"
 echo -e ">>> Building RisingOS for Xiaomi Miatoll"
 export TZ=Africa/Cairo
 echo -e ">>> Timezone set to Africa/Cairo"
-riseup miatoll userdebug
+lunch lineage_miatoll-bp3a-user
 echo -e ">>> Build command executed: riseup miatoll user"
 echo -e ">>> Build process initiated. This may take several hours."
 echo -e ">>> You can monitor the build progress above."
-rise b
+m evolution
 echo -e ">>> Build command executed: rise b"
 echo -e ">>> RisingOS Build process completed"
 echo -e ">>> You can find the built ROM in the out/target/product/miatoll/ directory"
