@@ -7,8 +7,9 @@ echo -e ">>> Cleaning old local manifests Or Old device trees if exists"
 rm -rf .repo/local_manifests/
 rm -rf device/xiaomi/miatoll
 rm -rf vendor/xiaomi/miatoll
+rm -rf kernel/xiaomi/sm6250
 rm -rf hardware/xiaomi
-rm -rf vendor/xiaomi/miuicamera-miatoll
+rm -rf vendor/xiaomi/miuicamera
 rm -rf hardware/sony/timekeep
 
 
@@ -16,7 +17,7 @@ rm -rf hardware/sony/timekeep
 # Initialize RisingOS repo
 # ================================
 echo -e ">>> Initializing RisingOS repository"
-repo init -u https://github.com/RisingOS-Revived/android -b sixteen --git-lfs
+repo init -u https://github.com/Miatoll720G/android -b sixteen --git-lfs
 echo -e ">>> Downloading RisingOS local manifests"
 echo -e ">>> Please wait, this may take a while..."
 echo -e ">>> Cloning RisingOS local manifests"
@@ -30,13 +31,19 @@ echo -e ">>> Cloning Device Trees"
 echo -e ">>> Cloning Device, Vendor, Kernel and Hardware Trees"
 echo -e ">>> Please wait, this may take a while..."
 echo -e ">>> Cloning Device Tree: xiaomi/miatoll"
-git clone https://github.com/RosMiatoll/device_xiaomi_miatoll_rebase.git -b 16 device/xiaomi/miatoll
+git clone https://github.com/RisingMIatoll/device_xiaomi_miatoll.git -b los device/xiaomi/miatoll
+echo -e ">>> Done"
+echo -e ">>> Cloning Common Device Tree: xiaomi/sm6250-common"
+git clone https://github.com/RisingMIatoll/device_xiaomi_sm6250-common.git -b 16-volt device/xiaomi/sm6250-common
 echo -e ">>> Done"
 echo -e ">>> Cloning Vendor Tree: xiaomi/vendor"
-git clone https://github.com/RosMiatoll/vendor_xiaomi_miatoll_rebase.git -b 16 vendor/xiaomi/miatoll
+git clone https://github.com/RisingMIatoll/vendor_xiaomi_miatoll.git -b los vendor/xiaomi/miatoll
+echo -e ">>> Done"
+echo -e ">>> Cloning Common Vendor Tree: xiaomi/sm6250-common"
+git clone https://github.com/RisingMIatoll/vendor_xiaomi_sm6250-common.git -b los vendor/xiaomi/sm6250-common
 echo -e ">>> Done"
 echo -e ">>> Cloning Kernel Tree: xiaomi/sm6250"
-git clone https://github.com/RiteshSahany/kernel_xiaomi_sm6250.git -b 16 kernel/xiaomi/sm6250
+git clone https://github.com/RisingMIatoll/kernel_xiaomi_sm6250.git -b 16 kernel/xiaomi/sm6250
 echo -e ">>> Done"
 echo -e ">>> Cloning Hardware Tree: xiaomi/hardware_xiaomi"
 git clone https://github.com/LineageOS/android_hardware_xiaomi.git -b lineage-23.0 hardware/xiaomi
@@ -45,10 +52,7 @@ echo -e ">>> Cloning Additional Hardware Trees"
 git clone https://github.com/LineageOS/android_hardware_sony_timekeep.git -b lineage-22.2 hardware/sony/timekeep
 echo -e ">>> Done"
 echo -e ">>> Cloning MIUI Camera Vendor Tree: xiaomi/miuicamera"
-git clone https://github.com/Miatoll720G/vendor_xiaomi_miuicamera-miatoll.git -b 16 vendor/xiaomi/miuicamera-miatoll
-echo -e ">>> Done"
-echo -e ">>> Cloning Dolby Vendor Tree: vendor/oneplus/dolby"
-git clone https://github.com/frost-testzone/vendor_oneplus_dolby.git -b main vendor/oneplus/dolby
+git clone https://github.com/RisingMIatoll/vendor_xiaomi_miuicamera-miatoll.git -b 16 vendor/xiaomi/miuicamera
 echo -e ">>> Done"
 echo -e ">>> All Device, Vendor, Kernel and Hardware Trees Cloned Successfully"
 echo -e ">>> Proceeding to sync remaining sources..."
@@ -58,14 +62,7 @@ echo -e ">>> Please wait, this may take a while..."
 # ================================
 echo -e ">>> Syncing repo"
 
-if [ -f /opt/crave/resync.sh ]; then
-    echo "[INFO] Running /opt/crave/resync.sh ..."
-    bash /opt/crave/resync.sh
-else
-    echo "[INFO] /opt/crave/resync.sh not found. Running repo sync instead..."
-    repo sync -c --no-clone-bundle --optimized-fetch --prune --force-sync -j$(nproc --all)
-fi
-
+/opt/crave/resync.sh
 
 echo -e ">>> Repo sync completed"
 echo -e ">>> Proceeding to build setup..."
@@ -164,4 +161,3 @@ ${DOWNLOAD_LINK}"
 done
 
 echo -e ">>> All uploads completed successfully!"
-
