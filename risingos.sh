@@ -52,7 +52,12 @@ echo -e ">>> Please wait, this may take a while..."
 # ================================
 echo -e ">>> Syncing repo"
 
-/opt/crave/resync.sh
+echo "Syncing sources… this will take forever. Go touch grass."
+if [ -f "/opt/crave/resync.sh" ]; then
+    /opt/crave/resync.sh
+else
+    repo sync -c -j$(nproc --all) --force-sync --no-tags --no-clone-bundle
+fi
 
 echo -e ">>> Repo sync completed"
 echo -e ">>> Proceeding to build setup..."
@@ -85,9 +90,10 @@ riseup miatoll userdebug
 echo -e ">>> Build command executed: riseup miatoll user"
 echo -e ">>> Build process initiated. This may take several hours."
 echo -e ">>> You can monitor the build progress above."
-rise b
+m installclean
 echo -e ">>> Build command executed: rise b"
 echo -e ">>> RisingOS Build process completed"
+mka bacon -j$(nproc --all)
 echo -e ">>> You can find the built ROM in the out/target/product/miatoll/ directory"
 echo -e ">>> Thank you for using this build script. Goodbye!"
 
