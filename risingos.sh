@@ -5,12 +5,19 @@
 # ================================
 echo -e ">>> Cleaning old local manifests Or Old device trees if exists"
 rm -rf .repo/local_manifests/
+rm -rf device/xiaomi/miatoll
+rm -rf vendor/xiaomi/miatoll
+rm -rf kernel/xiaomi/sm6250
+rm -rf hardware/xiaomi
+rm -rf vendor/xiaomi/miuicamera
+rm -rf hardware/sony/timekeep
+
 
 # ================================
 # Initialize RisingOS repo
 # ================================
 echo -e ">>> Initializing RisingOS repository"
-repo init -u https://github.com/RisingMIatoll/android -b sixteen --git-lfs
+repo init -u https://github.com/RisingOS-Revived/android -b sixteen --git-lfs
 echo -e ">>> Downloading RisingOS local manifests"
 echo -e ">>> Please wait, this may take a while..."
 echo -e ">>> Cloning RisingOS local manifests"
@@ -24,13 +31,19 @@ echo -e ">>> Cloning Device Trees"
 echo -e ">>> Cloning Device, Vendor, Kernel and Hardware Trees"
 echo -e ">>> Please wait, this may take a while..."
 echo -e ">>> Cloning Device Tree: xiaomi/miatoll"
-git clone https://github.com/Rosmi720/device_xiaomi_miatoll.git -b prebuild-kernel device/xiaomi/miatoll
+git clone https://github.com/RisingMIatoll/device_xiaomi_miatoll.git -b 16-los device/xiaomi/miatoll
+echo -e ">>> Done"
+echo -e ">>> Cloning Common Device Tree: xiaomi/sm6250-common"
+git clone https://github.com/RisingMIatoll/device_xiaomi_sm6250-common.git -b 16-volt device/xiaomi/sm6250-common
 echo -e ">>> Done"
 echo -e ">>> Cloning Vendor Tree: xiaomi/vendor"
-git clone https://github.com/Rosmi720/vendor_xiaomi_miatoll.git -b 16 vendor/xiaomi/miatoll
+git clone https://github.com/RisingMIatoll/vendor_xiaomi_miatoll.git -b 16 vendor/xiaomi/miatoll
+echo -e ">>> Done"
+echo -e ">>> Cloning Common Vendor Tree: xiaomi/sm6250-common"
+git clone https://github.com/RisingMIatoll/vendor_xiaomi_sm6250-common.git -b 16 vendor/xiaomi/sm6250-common
 echo -e ">>> Done"
 echo -e ">>> Cloning Kernel Tree: xiaomi/sm6250"
-git clone https://github.com/Rosmi720/device_xiaomi_miatoll-kernel.git -b main device/xiaomi/miatoll-kernel
+git clone https://github.com/RisingMIatoll/kernel_xiaomi_sm6250.git -b 16.0 kernel/xiaomi/sm6250
 echo -e ">>> Done"
 echo -e ">>> Cloning Hardware Tree: xiaomi/hardware_xiaomi"
 git clone https://github.com/LineageOS/android_hardware_xiaomi.git -b lineage-23.0 hardware/xiaomi
@@ -41,9 +54,6 @@ echo -e ">>> Done"
 echo -e ">>> Cloning MIUI Camera Vendor Tree: xiaomi/miuicamera"
 git clone https://github.com/RisingMIatoll/vendor_xiaomi_miuicamera-miatoll.git -b 16 vendor/xiaomi/miuicamera-miatoll
 echo -e ">>> Done"
-echo -e ">>> Cloning Dolby"
-git clone https://github.com/Rosmi720/vendor_oneplus_dolby.git -b main vendor/oneplus/dolby
-echo -e ">>> Done"
 echo -e ">>> All Device, Vendor, Kernel and Hardware Trees Cloned Successfully"
 echo -e ">>> Proceeding to sync remaining sources..."
 echo -e ">>> Please wait, this may take a while..."
@@ -52,18 +62,11 @@ echo -e ">>> Please wait, this may take a while..."
 # ================================
 echo -e ">>> Syncing repo"
 
-echo "Syncing sources… this will take forever. Go touch grass."
-if [ -f "/opt/crave/resync.sh" ]; then
-    /opt/crave/resync.sh
-else
-    repo sync -c -j$(nproc --all) --force-sync --no-tags --no-clone-bundle
-fi
+/opt/crave/resync.sh
 
 echo -e ">>> Repo sync completed"
 echo -e ">>> Proceeding to build setup..."
 echo -e ">>> Please wait..."
-
-
 # ================================
 # Setup build environment
 # ================================
@@ -71,13 +74,6 @@ source build/envsetup.sh
 echo -e ">>> Build environment setup completed"
 echo -e ">>> Proceeding to apply RisingOS build flags..."
 echo -e ">>> Please wait..."
-
-
-
-export BUILD_USERNAME=AbdoElbanaa 
-export BUILD_HOSTNAME=crave
-export BUILD_BROKEN_MISSING_REQUIRED_MODULES=true
-
 
 # ================================
 # Start build
@@ -90,10 +86,9 @@ riseup miatoll userdebug
 echo -e ">>> Build command executed: riseup miatoll user"
 echo -e ">>> Build process initiated. This may take several hours."
 echo -e ">>> You can monitor the build progress above."
-m installclean
+rise b
 echo -e ">>> Build command executed: rise b"
 echo -e ">>> RisingOS Build process completed"
-mka bacon -j$(nproc --all)
 echo -e ">>> You can find the built ROM in the out/target/product/miatoll/ directory"
 echo -e ">>> Thank you for using this build script. Goodbye!"
 
