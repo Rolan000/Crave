@@ -17,7 +17,7 @@ rm -rf hardware/sony/timekeep
 # Initialize Evolution X repo
 # ================================
 echo -e ">>> Initializing Evolution X repository"
-repo init -u https://github.com/Evolution-X/manifest -b bka --git-lfs
+repo init -u https://github.com/Evolution-X/manifest -b bq1 --git-lfs
 echo -e ">>> Downloading Evolution X local manifests"
 echo -e ">>> Please wait, this may take a while..."
 echo -e ">>> Cloning Evolution X local manifests"
@@ -69,7 +69,7 @@ echo -e ">>> Proceeding to build setup..."
 echo -e ">>> Please wait..."
 
 
-export BUILD_USERNAME=AbdoElbanaa 
+export BUILD_USERNAME=AbdoElbanaa and Fitapchan
 export BUILD_HOSTNAME=crave
 export BUILD_BROKEN_MISSING_REQUIRED_MODULES=true
 
@@ -88,12 +88,12 @@ echo ">>> Starting Evolution X Build"
 echo -e ">>> Building Evolution X for Xiaomi Miatoll"
 export TZ=Africa/Cairo
 echo -e ">>> Timezone set to Africa/Cairo"
-lunch lineage_miatoll-bp2a-userdebug
-echo -e ">>> Build command executed: riseup miatoll user"
+lunch lineage_miatoll-bp3a-userdebug
+echo -e ">>> Build command executed: lunch lineage_miatoll-bp3a-userdebug"
 echo -e ">>> Build process initiated. This may take several hours."
 echo -e ">>> You can monitor the build progress above."
 m evolution
-echo -e ">>> Build command executed: rise b"
+echo -e ">>> Build command executed: m evolution"
 echo -e ">>> Evolution X Build process completed"
 echo -e ">>> You can find the built ROM in the out/target/product/miatoll/ directory"
 echo -e ">>> Thank you for using this build script. Goodbye!"
@@ -111,10 +111,10 @@ TELEGRAM_BOT_TOKEN="8235509838:AAHUfOBE7Ni1I1xbX4zOg63TtMtXxsoUEhw"
 TELEGRAM_CHAT_ID="-1003121331954"
 
 # Find ALL files starting with Evolution X_Revived
-ROM_FILES=$(ls $ROM_DIR | grep "^Evolution X_Revived")
+ROM_FILES=$(ls $ROM_DIR | grep "^EvolutionX-16")
 
 if [[ -z "$ROM_FILES" ]]; then
-    echo -e ">>> ERROR: Not Found Any Files Start With Evolution X_Revived"
+    echo -e ">>> ERROR: Not Found Any Files Start With EvolutionX-16"
     exit 1
 fi
 
