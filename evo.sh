@@ -31,22 +31,22 @@ echo -e ">>> Cloning Device Trees"
 echo -e ">>> Cloning Device, Vendor, Kernel and Hardware Trees"
 echo -e ">>> Please wait, this may take a while..."
 echo -e ">>> Cloning Device Tree: xiaomi/miatoll"
-git clone https://github.com/RisingMIatoll/device_xiaomi_miatoll.git -b evo device/xiaomi/miatoll
+git clone https://github.com/Evolution-X-Devices/device_xiaomi_miatoll.git -b bka device/xiaomi/miatoll
 echo -e ">>> Done"
 echo -e ">>> Cloning Common Device Tree: xiaomi/sm6250-common"
-git clone https://github.com/RisingMIatoll/device_xiaomi_sm6250-common.git -b 16-volt device/xiaomi/sm6250-common
+git clone https://github.com/Evolution-X-Devices/device_xiaomi_sm6250-common.git -b bka device/xiaomi/sm6250-common
 echo -e ">>> Done"
 echo -e ">>> Cloning Vendor Tree: xiaomi/vendor"
-git clone https://github.com/RisingMIatoll/vendor_xiaomi_miatoll.git -b 16 vendor/xiaomi/miatoll
+git clone https://github.com/Evolution-X-Devices/vendor_xiaomi_miatoll.git -b bka vendor/xiaomi/miatoll
 echo -e ">>> Done"
 echo -e ">>> Cloning Common Vendor Tree: xiaomi/sm6250-common"
-git clone https://github.com/RisingMIatoll/vendor_xiaomi_sm6250-common.git -b 16 vendor/xiaomi/sm6250-common
+git clone https://github.com/Evolution-X-Devices/vendor_xiaomi_sm6250-common.git -b bka vendor/xiaomi/sm6250-common
 echo -e ">>> Done"
 echo -e ">>> Cloning Kernel Tree: xiaomi/sm6250"
-git clone https://github.com/RisingMIatoll/kernel_xiaomi_sm6250.git -b 16.0 kernel/xiaomi/sm6250
+git clone https://github.com/Evolution-X-Devices/kernel_xiaomi_sm6250.git -b bka kernel/xiaomi/sm6250
 echo -e ">>> Done"
 echo -e ">>> Cloning Hardware Tree: xiaomi/hardware_xiaomi"
-git clone https://github.com/LineageOS/android_hardware_xiaomi.git -b lineage-23.0 hardware/xiaomi
+git clone https://github.com/Evolution-X-Devices/hardware_xiaomi.git -b bka hardware/xiaomi
 echo -e ">>> Done"
 echo -e ">>> Cloning Additional Hardware Trees"
 git clone https://github.com/LineageOS/android_hardware_sony_timekeep.git -b lineage-22.2 hardware/sony/timekeep
@@ -67,11 +67,6 @@ echo -e ">>> Syncing repo"
 echo -e ">>> Repo sync completed"
 echo -e ">>> Proceeding to build setup..."
 echo -e ">>> Please wait..."
-
-
-export BUILD_USERNAME=AbdoElbanaa and Fitapchan
-export BUILD_HOSTNAME=crave
-export BUILD_BROKEN_MISSING_REQUIRED_MODULES=true
 
 # ================================
 # Setup build environment
@@ -104,7 +99,7 @@ echo -e ">>> Thank you for using this build script. Goodbye!"
 echo -e ">>> Searching for ROM files (Evolution X_Revived*)..."
 
 ROM_DIR="out/target/product/miatoll"
-API_KEY="cfb7aad5-0c4b-401b-b5dc-730b71be72a3"
+API_KEY="6bdc7be5-5dcf-48ab-b90f-e670f89b6330"
 
 # === Telegram data ===
 TELEGRAM_BOT_TOKEN="8235509838:AAHUfOBE7Ni1I1xbX4zOg63TtMtXxsoUEhw"
